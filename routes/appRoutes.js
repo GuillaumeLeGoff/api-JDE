@@ -21,21 +21,28 @@ import {
     addNewDisplay
 } from "../controllers/medias/displayController";
 
-import  {
+import {
     addNewUser,
     getUsers,
     getUserWithId,
     updateUser,
     deleteUser
 } from '../controllers/login/userController';
-import  {
+import {
+    addNewTruck,
+    getTrucks,
+    getTruckWithId,
+    updateTruck,
+    deleteTruck
+} from '../controllers/login/truckController';
+import {
     allAccess,
     userBoard,
     adminBoard,
     superuserBoard
 } from '../controllers/login/userController'
 const controller = require("../controllers/login/authController");
-import {authentication, verifySignUp} from "../middleware";
+import { authentication, verifySignUp } from "../middleware";
 
 const routes = (app) => {
     app.route('/files')
@@ -54,13 +61,22 @@ const routes = (app) => {
 
         // Deleter a specific file
         .delete(deleteFile);
-    app.route('/events')
+    app.route('/trucks')
         //GET endpoint
-        .get(getEvents)
+        .get(getTrucks)
 
         // POST endpoint
-        .post(addNewEvent);
+        .post(addNewTruck);
 
+    app.route('/truck/:TruckId')
+        // Get a specific file
+        .get(getTruckWithId)
+
+        // Update a specific file
+        .put(updateTruck)
+
+        // Deleter a specific file
+        .delete(deleteTruck);
     app.route('/event/:EventId')
         // Get a specific file
         .get(getEventWithId)
