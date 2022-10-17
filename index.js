@@ -1,15 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from "body-parser";
-import bcrypt from 'bcryptjs';
+
 
 const fileupload = require("express-fileupload");
 import cors from 'cors';
 
 import routes from './routes/appRoutes';
 
-import path from "path";
-import fs from "fs";
 
 const app = express();
 const PORT = 4000;
