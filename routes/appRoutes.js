@@ -7,6 +7,11 @@ import {
 } from '../controllers/medias/fileController';
 
 import {
+    getVeille,
+    updateVeille,
+} from '../controllers/veille/veilleController';
+
+import {
     addNewEvent,
     getEvents,
     getEventWithId,
@@ -34,7 +39,7 @@ import {
     getTruckWithId,
     updateTruck,
     deleteTruck
-} from '../controllers/login/truckController';
+} from '../controllers/truck/truckController';
 import {
     allAccess,
     userBoard,
@@ -45,6 +50,14 @@ const controller = require("../controllers/login/authController");
 import { authentication, verifySignUp } from "../middleware";
 
 const routes = (app) => {
+    app.route('/veille')
+        //GET endpoint
+        .get(getVeille)
+
+    app.route('/veille/:veilleId')    
+         // Update veille
+         .put(updateVeille)
+         
     app.route('/files')
         //GET endpoint
         .get(getFiles)
@@ -114,12 +127,6 @@ const routes = (app) => {
         .get(adminBoard);
     app.route("/superuser")
         .get(superuserBoard);
-
-    app.route("/display")
-        .get(getDisplay)
-        .post(addNewDisplay)
-    app.route("/display/:DisplayId")
-        .put(updateDisplay)
 
 
     app.post(

@@ -4,13 +4,16 @@ import * as buffer from "buffer";
 const Schema = mongoose.Schema;
 
 export const FileSchema = new Schema({
-    name:{
+    id: {
+        type: Number,
+    },
+    fileName:{
         type: String,
     },
-    _user:{
+    user:{
         type: String,
     },
-    type:{
+    format:{
         type: String,
     },
     date:{

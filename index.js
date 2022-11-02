@@ -34,14 +34,14 @@ app.use(cors());
 //POST
 app.post("/upload", (req, res) => {
     const user = req.body.user
-    const newpath = __dirname + `/../frontend/public/medias/${user}/`;
+    const newpath =  __dirname + "/../../panneau_couchet/public/media/";
     const file = req.files.file;
     const hashedName = req.body.fileName
     const format = req.body.format
-    console.log(hashedName)
     file.mv(`${newpath}${hashedName}.${format}`, (err) => {
         if (err) {
-            res.status(500).send({ message: "File upload failed", code: 500 });
+            console.log(err);
+            res.status(500).send({ message: "File upload failed", code: 500});
         } else {
             res.status(200).send({ message: "File Uploaded", code: 200 });
         }
@@ -49,7 +49,7 @@ app.post("/upload", (req, res) => {
 });
 
 //routes
-routes(app);
+  routes(app); 
 
 app.get('/', (req, res) =>
     res.send(`Le serveur JDE fonctionne sur le port : ${PORT}`)

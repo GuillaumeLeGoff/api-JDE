@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TruckSchema } from '../../models/medias/truckModel';
+import { TruckSchema } from '../../models/truck/truckModel';
 
 const Truck = mongoose.model('Truck', TruckSchema);
 

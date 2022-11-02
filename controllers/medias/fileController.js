@@ -4,8 +4,8 @@ import {FileSchema} from '../../models/medias/fileModel';
 const File = mongoose.model('File', FileSchema);
 
 export const addNewFile = (req, res) => {
+    
     let newFile = new File(req.body);
-
     newFile.save((err, File) => {
         if (err) {
             res.send(err);
@@ -35,6 +35,7 @@ export const getFileWithId = (req, res) => {
 export const updateFile = (req, res) => {
     File.findOneAndUpdate({_id: req.params.FileId}, req.body, {new: true}, (err, File) => {
         if (err) {
+            console.log(err);
             res.send(err);
         }
         res.json(File);
