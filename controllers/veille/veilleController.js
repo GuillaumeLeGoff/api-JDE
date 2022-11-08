@@ -1,27 +1,28 @@
 import mongoose from "mongoose";
 import { VeilleSchema } from "../../models/veille/veilleModel";
 
-const Truck = mongoose.model("veille", VeilleSchema);
+const Veille = mongoose.model("veille", VeilleSchema);
 
 export const getVeille = (req, res) => {
-  Truck.find({}, (err, Truck) => {
+  Veille.find({}, (err, Veille) => {
     if (err) {
       res.send(err);
     }
-    res.json(Truck);
+    res.json(Veille);
   });
 };
 
 export const updateVeille = (req, res) => {
-  Truck.findOneAndUpdate(
-    { _id: req.params.TruckId },
+  console.log(req.params.veilleId);
+  Veille.findOneAndUpdate(
+    { _id: req.params.veilleId },
     req.body,
     { new: true },
-    (err, Truck) => {
+    (err, Veille) => {
       if (err) {
         res.send(err);
       }
-      res.json(Truck);
+      res.json(Veille);
     }
   );
 };

@@ -1,145 +1,164 @@
 import {
-    addNewFile,
-    getFiles,
-    getFileWithId,
-    updateFile,
-    deleteFile,
-} from '../controllers/medias/fileController';
+  addNewFile,
+  getFiles,
+  getFileWithId,
+  updateFile,
+  deleteFile,
+} from "../controllers/medias/fileController";
 
 import {
-    getVeille,
-    updateVeille,
-} from '../controllers/veille/veilleController';
+  getVeille,
+  updateVeille,
+} from "../controllers/veille/veilleController";
 
 import {
-    addNewEvent,
-    getEvents,
-    getEventWithId,
-    updateEvent,
-    deleteEvent,
-
-} from '../controllers/medias/eventController';
+  addNewEvent,
+  getEvents,
+  getEventWithId,
+  updateEvent,
+  deleteEvent,
+} from "../controllers/medias/eventController";
 
 import {
-    getDisplay,
-    updateDisplay,
-    addNewDisplay
+  getDisplay,
+  updateDisplay,
+  addNewDisplay,
 } from "../controllers/medias/displayController";
 
 import {
-    addNewUser,
-    getUsers,
-    getUserWithId,
-    updateUser,
-    deleteUser
-} from '../controllers/login/userController';
+  addNewUser,
+  getUsers,
+  getUserWithId,
+  updateUser,
+  deleteUser,
+} from "../controllers/login/userController";
 import {
-    addNewTruck,
-    getTrucks,
-    getTruckWithId,
-    updateTruck,
-    deleteTruck
-} from '../controllers/truck/truckController';
+  addNewTruck,
+  getTrucks,
+  getTruckWithId,
+  updateTruck,
+  deleteTruck,
+} from "../controllers/truck/truckController";
+
 import {
-    allAccess,
-    userBoard,
-    adminBoard,
-    superuserBoard
-} from '../controllers/login/userController'
+  addNewMode,
+  getModes,
+  getModeWithId,
+  updateMode,
+  deleteMode,
+} from "../controllers/mode/modeController";
+
+import {
+  allAccess,
+  userBoard,
+  adminBoard,
+  superuserBoard,
+} from "../controllers/login/userController";
 const controller = require("../controllers/login/authController");
 import { authentication, verifySignUp } from "../middleware";
 
 const routes = (app) => {
-    app.route('/veille')
-        //GET endpoint
-        .get(getVeille)
+  app
+    .route("/modes")
+    //GET mode
+    .get(getModes)
+    
+     // POST mode
+     .post(addNewMode);
+        
+  app
+    .route("/mode/:modeId")
+    // Update mode
+    .put(updateMode);
 
-    app.route('/veille/:veilleId')    
-         // Update veille
-         .put(updateVeille)
-         
-    app.route('/files')
-        //GET endpoint
-        .get(getFiles)
+  app
+    .route("/veille")
+    //GET endpoint
+    .get(getVeille);
 
-        // POST endpoint
-        .post(addNewFile);
+  app
+    .route("/veille/:veilleId")
+    // Update veille
+    .put(updateVeille);
 
-    app.route('/file/:FileId')
-        // Get a specific file
-        .get(getFileWithId)
+  app
+    .route("/files")
+    //GET endpoint
+    .get(getFiles)
 
-        // Update a specific file
-        .put(updateFile)
+    // POST endpoint
+    .post(addNewFile);
 
-        // Deleter a specific file
-        .delete(deleteFile);
-    app.route('/trucks')
-        //GET endpoint
-        .get(getTrucks)
+  app
+    .route("/file/:FileId")
+    // Get a specific file
+    .get(getFileWithId)
 
-        // POST endpoint
-        .post(addNewTruck);
+    // Update a specific file
+    .put(updateFile)
 
-    app.route('/truck/:TruckId')
-        // Get a specific file
-        .get(getTruckWithId)
+    // Deleter a specific file
+    .delete(deleteFile);
+  app
+    .route("/trucks")
+    //GET endpoint
+    .get(getTrucks)
 
-        // Update a specific file
-        .put(updateTruck)
+    // POST endpoint
+    .post(addNewTruck);
 
-        // Deleter a specific file
-        .delete(deleteTruck);
-    app.route('/event/:EventId')
-        // Get a specific file
-        .get(getEventWithId)
+  app
+    .route("/truck/:TruckId")
+    // Get a specific file
+    .get(getTruckWithId)
 
-        // Update a specific file
-        .put(updateEvent)
+    // Update a specific file
+    .put(updateTruck)
 
-        // Deleter a specific file
-        .delete(deleteEvent);
+    // Deleter a specific file
+    .delete(deleteTruck);
+  app
+    .route("/event/:EventId")
+    // Get a specific file
+    .get(getEventWithId)
 
+    // Update a specific file
+    .put(updateEvent)
 
-    app.route('/users')
-        //GET endpoint
-        .get(getUsers)
+    // Deleter a specific file
+    .delete(deleteEvent);
 
-        // POST endpoint
-        .post(addNewUser);
-    app.route('/user/:UserId')
-        // Get a specific file
-        .get(getUserWithId)
+  app
+    .route("/users")
+    //GET endpoint
+    .get(getUsers)
 
-        // Update a specific file
-        .put(updateUser)
+    // POST endpoint
+    .post(addNewUser);
+  app
+    .route("/user/:UserId")
+    // Get a specific file
+    .get(getUserWithId)
 
-        // Deleter a specific file
-        .delete(deleteUser);
+    // Update a specific file
+    .put(updateUser)
 
-    app.route('/medias')
+    // Deleter a specific file
+    .delete(deleteUser);
 
-    app.route("/all")
-        .get(allAccess);
-    app.route("/user")
-        .get(userBoard);
-    app.route("/admin")
-        .get(adminBoard);
-    app.route("/superuser")
-        .get(superuserBoard);
+  app.route("/medias");
 
+  app.route("/all").get(allAccess);
+  app.route("/user").get(userBoard);
+  app.route("/admin").get(adminBoard);
+  app.route("/superuser").get(superuserBoard);
 
-    app.post(
-        "/auth/signup",
-        [
-            verifySignUp.checkDuplicateUsername,
-            verifySignUp.checkRolesExisted
-        ],
-        controller.signup
-    );
+  app.post(
+    "/auth/signup",
+    [verifySignUp.checkDuplicateUsername, verifySignUp.checkRolesExisted],
+    controller.signup
+  );
 
-    app.post("/auth/signin", controller.signin)
-
-}
+  app.post("/auth/signin", controller.signin);
+};
 export default routes;
-
