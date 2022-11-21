@@ -51,13 +51,13 @@ app.post("/delete", (req, res) => {
   const fileName = req.body.fileName;
   const format = req.body.format;
   const directoryPath = __dirname + "/../../panneau_couchet/public/media/"
-  fs.unlink(directoryPath + fileName +'.'+ format, (err) => {
-    if (err) {
-      throw err;
-    }
-
+  if (req.body.fileName  != "file"){
     
-  });
+    fs.unlink(directoryPath + fileName +"."+ format, (err) => {
+    });
+    
+  }
+  
 });
 
 //routes

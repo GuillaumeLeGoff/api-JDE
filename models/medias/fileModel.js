@@ -7,6 +7,9 @@ export const FileSchema = new Schema({
     id: {
         type: Number,
     },
+    name:{
+        type: String,
+    },
     fileName:{
         type: String,
     },
