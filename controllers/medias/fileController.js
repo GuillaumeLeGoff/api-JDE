@@ -14,6 +14,7 @@ export const addNewFile = (req, res) => {
 }
 
 export const getFiles = (req, res) => {
+    console.log("tes");
     File.find({}, (err, File) => {
         if (err) {
             res.send(err);

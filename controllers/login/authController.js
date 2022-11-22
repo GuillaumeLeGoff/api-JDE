@@ -7,6 +7,7 @@ const fs = require('fs');
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+    console.log(res);
     const folderName = `../frontend/public/medias/${req.body.username}`;
     const user = new User({
         username: req.body.username,

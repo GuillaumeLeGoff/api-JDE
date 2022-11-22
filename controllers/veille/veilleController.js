@@ -13,7 +13,6 @@ export const getVeille = (req, res) => {
 };
 
 export const updateVeille = (req, res) => {
-  console.log(req.params.veilleId);
   Veille.findOneAndUpdate(
     { _id: req.params.veilleId },
     req.body,

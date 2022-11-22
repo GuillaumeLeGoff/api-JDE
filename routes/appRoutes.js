@@ -7,6 +7,11 @@ import {
 } from "../controllers/medias/fileController";
 
 import {
+  getHeure,
+  updateHeure,
+} from "../controllers/veille/heureController";
+
+import {
   getVeille,
   updateVeille,
 } from "../controllers/veille/veilleController";
@@ -81,6 +86,15 @@ const routes = (app) => {
     // Update veille
     .put(updateVeille);
 
+    app
+    .route("/heure")
+    //GET endpoint
+    .get(getHeure);
+
+  app
+    .route("/heure/:heureId")
+    // Update heure
+    .put(updateHeure);
   app
     .route("/files")
     //GET endpoint
