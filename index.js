@@ -16,7 +16,7 @@ app.disable("x-powered-by");
 
 // mongo connexion
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://127.0.0.1/JDE`);
+mongoose.connect(`mongodb://127.0.0.1/Fake_app`);
 
 // file upload setup
 app.use(fileupload());
@@ -32,7 +32,7 @@ app.use(cors());
 //POST
 app.post("/upload", (req, res) => {
   const user = req.body.user;
-  const newpath = __dirname + "/../../panneau_couchet/public/media/";
+  const newpath = __dirname + "";
   const file = req.files.file;
   const hashedName = req.body.fileName;
   const format = req.body.format;
@@ -50,7 +50,7 @@ app.post("/upload", (req, res) => {
 app.post("/delete", (req, res) => {
   const fileName = req.body.fileName;
   const format = req.body.format;
-  const directoryPath = __dirname + "/../../panneau_couchet/public/media/"
+  const directoryPath = __dirname + ""
   if (req.body.fileName  != "file"){
     
     fs.unlink(directoryPath + fileName +"."+ format, (err) => {

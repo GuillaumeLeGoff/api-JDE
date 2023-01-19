@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 import {RoleSchema} from "../../models/login/roleModel";
 
 const User = mongoose.model('User', UserSchema);
-const Role = mongoose.model('Role', RoleSchema);
 
 exports.allAccess = (req, res) => {
     res.status(200).send("Public Content")
@@ -21,7 +20,10 @@ exports.superuserBoard = (req, res) => {
 }
 
 export const addNewUser = (req, res) => {
-    let newUser = new User(req.body);
+    let newUser = new User({
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password, 8),
+    });
 
     newUser.save((err, User) => {
         if (err) {
